@@ -1,8 +1,40 @@
 package Arithmetic;
 
+import java.util.Scanner;
+
 public class Arithmetic<T extends Number, U extends Number> {
     private T num1;
     private U num2;
+
+    public Arithmetic() {
+        Scanner scanner = new Scanner(System.in);
+
+        while (true) {
+            System.out.print("Please enter the first number: ");
+            this.num1 = (T) parseInput(scanner.nextLine());
+            if (this.num1 != null)
+                break;
+        }
+
+        while (true) {
+            System.out.print("Please enter the second number: ");
+            this.num2 = (U) parseInput(scanner.nextLine());
+            if (this.num2 != null)
+                break;
+        }
+    }
+
+    private Number parseInput(String input) {
+        try {
+            return Integer.parseInt(input);
+        } catch (NumberFormatException e1) {
+            try {
+                return Double.parseDouble(input);
+            } catch (NumberFormatException e2) {
+                return null;
+            }
+        }
+    }
 
     public Arithmetic(T num1, U num2) {
         this.num1 = num1;
